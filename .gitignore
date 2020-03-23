@@ -1,0 +1,10 @@
+/venv/
+/.idea/
+
+/__pycache__/
+/pavlov/database.conf
+/pavlov/server.conf
+
+*.pyc
+*.log
+pavlov.db.sqlite3
