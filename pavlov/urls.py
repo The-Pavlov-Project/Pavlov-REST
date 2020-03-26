@@ -21,6 +21,7 @@ from pavlov.views import pavlov_home
 urlpatterns = [
     path('', pavlov_home),
     path('admin/', admin.site.urls),
+    path('auth/', include('PVLV_auth.urls')),
     path('games/', include('PVLV_games.urls')),
     path('users/', include('PVLV_users.urls')),
 ]

@@ -48,12 +48,20 @@ DEBUG = setup_from_conf_file('server.conf')['DEBUG']
 
 ALLOWED_HOSTS = setup_from_conf_file('server.conf')['ALLOWED_HOSTS']
 
+# Custom User Model
+AUTH_USER_MODEL = 'PVLV_auth.User'
+
 
 # Application definition
 
 INSTALLED_APPS = [
+
+    # apps
+    'PVLV_auth.apps.PvlvAuthConfig',
     'PVLV_games.apps.PvlvGamesConfig',
     'PVLV_users.apps.PvlvUsersConfig',
+
+    # core
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -62,6 +70,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -92,6 +101,13 @@ TEMPLATES = [
         },
     },
 ]
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
 
 WSGI_APPLICATION = 'pavlov.wsgi.application'
 

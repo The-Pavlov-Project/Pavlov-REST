@@ -1,33 +1,13 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 class Scope(models.TextChoices):
     TELEGRAM = 'T', 'Telegram'
     DISCORD = 'D', 'Discord'
-
-
-class User(models.Model):
-
-    email = models.EmailField()
-    time_zone = models.IntegerField(default=0)
-    gender = ''
-    age = models.IntegerField(default=0)
-    country = models.IntegerField(default=0)
-    vip_code = models.IntegerField(default=0)
-    deep_logging = models.BooleanField(default=True)
-    suspended = models.BooleanField()
-
-    # auto regenerated, is the code to send as verification.
-    verification_code = models.IntegerField(default=0)
-
-    # the current game pass of the user
-    game_pass = models.CharField(default='', max_length=100)
-
-    class Meta:
-        ordering = []
-
-    objects = models.Manager()
 
 
 class UserApp(models.Model):
@@ -51,3 +31,6 @@ class UserApp(models.Model):
         ordering = []
 
     objects = models.Manager()
+
+    def __str__(self):
+        return '{}-{}'.format(self.app_type, self.username)
