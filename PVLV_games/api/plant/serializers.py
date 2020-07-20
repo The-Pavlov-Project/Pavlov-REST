@@ -10,4 +10,4 @@ class PlantSerializer(ModelSerializer):
 
     class Meta:
         model = Plant
-        exclude = ['id']
+        exclude = []

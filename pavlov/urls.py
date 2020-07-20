@@ -22,6 +22,7 @@ urlpatterns = [
     path('', pavlov_home),
     path('admin/', admin.site.urls),
     path('auth/', include('PVLV_auth.urls')),
-    path('games/', include('PVLV_games.urls')),
-    path('users/', include('PVLV_users.urls')),
+    path('g/', include('PVLV_games.urls')),
+    path('platform/', include('PVLV_platform.urls')),
+    path('user/', include('PVLV_user.urls')),
 ]

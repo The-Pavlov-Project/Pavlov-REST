@@ -7,6 +7,8 @@ router = routers.DefaultRouter()
 router.register('', GamesModelViewSet)
 
 urlpatterns = [
+    # path('web/<slug:username>/', user, name='user-home'),
+
     path('plant/<int:user>/<slug:game_pass>/plant/', PlantViewSet.as_view({'get': 'plant'})),
     path('plant/<int:user>/<slug:game_pass>/status/', PlantViewSet.as_view({'get': 'status'})),
     path('plant/<int:user>/<slug:game_pass>/wet/', PlantViewSet.as_view({'get': 'wet'})),

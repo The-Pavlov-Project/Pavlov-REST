@@ -1,10 +1,10 @@
 from rest_framework.generics import CreateAPIView
 
-from PVLV_games.models import Game
+from PVLV_user.models import User
 from .serializers import UserRegistrationSerializer
 
 
 class UserRegisterViewSet(CreateAPIView):
 
-    queryset = Game.objects.all()
+    queryset = User.objects.all()
     serializer_class = UserRegistrationSerializer

@@ -3,6 +3,6 @@ from .models import *
 
 
 admin.site.register([
-    UserApp,
-    User,
+    UserPlatform,
+    GuildPlatform,
 ])

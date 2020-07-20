@@ -1,13 +1,13 @@
 from rest_framework.serializers import (
     ModelSerializer,
 )
-from PVLV_users.models import (
-    User,
+from PVLV_games.models import (
+    Plant,
 )
 
 
-class UsersSerializer(ModelSerializer):
+class PlantSerializer(ModelSerializer):
 
     class Meta:
-        model = User
+        model = Plant
         exclude = []

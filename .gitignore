@@ -2,7 +2,7 @@
 /.idea/
 
 /__pycache__/
-/static/
+/PVLV_games/static/
 /pavlov/database.conf
 /pavlov/server.conf
 

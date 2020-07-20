@@ -49,7 +49,7 @@ DEBUG = setup_from_conf_file('server.conf')['DEBUG']
 ALLOWED_HOSTS = setup_from_conf_file('server.conf')['ALLOWED_HOSTS']
 
 # Custom User Model
-AUTH_USER_MODEL = 'PVLV_auth.User'
+AUTH_USER_MODEL = 'PVLV_user.User'
 
 
 # Application definition
@@ -59,7 +59,8 @@ INSTALLED_APPS = [
     # apps
     'PVLV_auth.apps.PvlvAuthConfig',
     'PVLV_games.apps.PvlvGamesConfig',
-    'PVLV_users.apps.PvlvUsersConfig',
+    'PVLV_platform.apps.PvlvPlatformConfig',
+    'PVLV_user.apps.PvlvUserConfig',
 
     # core
     'django.contrib.admin',
