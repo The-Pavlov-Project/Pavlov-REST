@@ -12,9 +12,15 @@ class UserSerializer(ModelSerializer):
         model = User
         fields = [
             'email',
+            'first_name',
+            'last_name',
             'username',
+            'date_joined',
+            'bio',
             'gender',
             'age',
             'country',
-            'vip_code'
+            'vip_code',
+            'time_zone',
+            'deep_logging',
         ]

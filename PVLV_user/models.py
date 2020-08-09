@@ -18,5 +18,5 @@ class User(AbstractUser):
     # auto regenerated, is the code to send as verification.
     verification_code = models.IntegerField(default=0)
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']
+    # USERNAME_FIELD = 'username'
+    # REQUIRED_FIELDS = ['username']

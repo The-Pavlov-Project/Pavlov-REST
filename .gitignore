@@ -1,6 +1,7 @@
 /venv/
 /.idea/
 
+/docs/build
 /__pycache__/
 /PVLV_games/static/
 /pavlov/database.conf
@@ -9,3 +10,4 @@
 *.pyc
 *.log
 pavlov.db.sqlite3
+

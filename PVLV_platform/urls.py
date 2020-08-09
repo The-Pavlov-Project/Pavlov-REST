@@ -1,12 +1,21 @@
-from django.urls import path, include
+from django.urls import path
 from rest_framework import routers
-from PVLV_platform.api.views import PlatformViewSet
+from PVLV_platform.api.views import PlatformModelViewSet, GuildPlatformModelViewSet, UserPlatformModelViewSet
 
 router = routers.DefaultRouter()
-router.register('', PlatformViewSet)
+router.register('', PlatformModelViewSet)
+router.register('detail/guild', GuildPlatformModelViewSet)
+router.register('detail/user', UserPlatformModelViewSet)
+
 
 urlpatterns = [
-    path('', include(router.urls)),
-    path('<slug:platform>/<int:guild_id>/', PlatformViewSet.as_view({'get': 'guild'})),
-    path('<slug:platform>/<int:guild_id>/<int:user_id>/', PlatformViewSet.as_view({'get': 'user'})),
-]
+    path('<slug:platform>/<int:guild_id>/<int:user_id>/', PlatformModelViewSet.as_view({'get': 'platform'})),
+    path('detail/guild/<slug:platform>/<int:guild_id>/', GuildPlatformModelViewSet.as_view({
+        'get': 'guild',
+        'put': 'guild'
+    })),
+    path('detail/user/<slug:platform>/<int:user_id>/', UserPlatformModelViewSet.as_view({
+        'get': 'user',
+        'put': 'user',
+    })),
+] + router.urls

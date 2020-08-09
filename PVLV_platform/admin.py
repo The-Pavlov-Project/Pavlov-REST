@@ -5,4 +5,5 @@ from .models import *
 admin.site.register([
     UserPlatform,
     GuildPlatform,
+    GuildUserPlatform,
 ])
