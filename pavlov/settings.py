@@ -58,6 +58,7 @@ INSTALLED_APPS = [
 
     # apps
     'PVLV_auth.apps.PvlvAuthConfig',
+    'PVLV_chatwars.apps.PvlvChatWarsConfig',
     'PVLV_games.apps.PvlvGamesConfig',
     'PVLV_platform.apps.PvlvPlatformConfig',
     'PVLV_user.apps.PvlvUserConfig',

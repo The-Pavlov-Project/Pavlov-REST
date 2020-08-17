@@ -1,18 +1,11 @@
-from django.urls import path, include
+from django.urls import path
 from rest_framework import routers
-from PVLV_games.api.views import GamesModelViewSet
-from PVLV_games.api.plant.views import PlantViewSet
+from PVLV_games.api.views import GamePassModelViewSet, GamesSettingsModelViewSet
 
 router = routers.DefaultRouter()
-router.register('', GamesModelViewSet)
+router.register('settings', GamesSettingsModelViewSet)
+router.register('gamepass', GamePassModelViewSet)
 
 urlpatterns = [
-    # path('web/<slug:username>/', user, name='user-home'),
 
-    path('plant/<int:user>/<slug:game_pass>/plant/', PlantViewSet.as_view({'get': 'plant'})),
-    path('plant/<int:user>/<slug:game_pass>/status/', PlantViewSet.as_view({'get': 'status'})),
-    path('plant/<int:user>/<slug:game_pass>/wet/', PlantViewSet.as_view({'get': 'wet'})),
-    path('plant/<int:user>/<slug:game_pass>/pick/', PlantViewSet.as_view({'get': 'pick'})),
-]
-
-urlpatterns += router.urls
+] + router.urls

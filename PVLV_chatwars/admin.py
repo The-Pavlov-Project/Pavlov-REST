@@ -3,6 +3,6 @@ from .models import *
 
 
 admin.site.register([
-    GamePass,
-    GameSettings,
+    Factory,
+    Game,
 ])
