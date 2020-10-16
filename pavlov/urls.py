@@ -25,5 +25,6 @@ urlpatterns = [
     path('chatwars/', include('PVLV_chatwars.urls')),
     path('g/', include('PVLV_games.urls')),
     path('platform/', include('PVLV_platform.urls')),
+    path('post/', include('PVLV_post.urls')),
     path('user/', include('PVLV_user.urls')),
 ]

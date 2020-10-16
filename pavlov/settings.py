@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'PVLV_chatwars.apps.PvlvChatWarsConfig',
     'PVLV_games.apps.PvlvGamesConfig',
     'PVLV_platform.apps.PvlvPlatformConfig',
+    'PVLV_post.apps.PvlvPostConfig',
     'PVLV_user.apps.PvlvUserConfig',
 
     # core
