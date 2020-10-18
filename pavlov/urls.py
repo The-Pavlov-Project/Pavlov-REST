@@ -15,16 +15,29 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from pavlov.views import pavlov_home
+from PVLV_user.views import profile
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
-    path('', pavlov_home),
     path('admin/', admin.site.urls),
+
+    path('', include('PVLV_website.urls')),
+    path('blog/', include('PVLV_website.blog.urls')),
     path('auth/', include('PVLV_auth.urls')),
-    path('chatwars/', include('PVLV_chatwars.urls')),
-    path('g/', include('PVLV_games.urls')),
-    path('platform/', include('PVLV_platform.urls')),
-    path('post/', include('PVLV_post.urls')),
-    path('user/', include('PVLV_user.urls')),
+    path('profile/', profile, name='profile'),
+
+    # api endpoints
+    path('api/auth/', include('PVLV_auth.api.urls')),
+    path('api/chatwars/', include('PVLV_chatwars.urls')),
+    path('api/g/', include('PVLV_games.urls')),
+    path('api/platform/', include('PVLV_platform.urls')),
+    path('api/post/', include('PVLV_post.urls')),
+    path('api/user/', include('PVLV_user.api.urls')),
+
 ]
+
+# serve media static in development
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

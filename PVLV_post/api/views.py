@@ -1,6 +1,6 @@
 from django.core.exceptions import SuspiciousOperation
 
-from rest_framework.viewsets import ModelViewSet, ViewSet
+from rest_framework.viewsets import ReadOnlyModelViewSet
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.status import HTTP_404_NOT_FOUND
@@ -14,17 +14,17 @@ from .serializers import (
 )
 
 
-class ColorViewSet(ModelViewSet):
+class ColorViewSet(ReadOnlyModelViewSet):
     queryset = Color.objects.all()
     serializer_class = ColorSerializer
 
 
-class PostGeneratorSubConfigViewSet(ModelViewSet):
+class PostGeneratorSubConfigViewSet(ReadOnlyModelViewSet):
     queryset = PostGeneratorSubConfig.objects.all()
     serializer_class = PostGeneratorSubConfigSerializer
 
 
-class PostGeneratorConfigsViewSet(ModelViewSet):
+class PostGeneratorConfigsViewSet(ReadOnlyModelViewSet):
     queryset = PostGeneratorConfig.objects.all()
     serializer_class = PostGeneratorConfigsSerializer
 

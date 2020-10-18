@@ -57,12 +57,14 @@ AUTH_USER_MODEL = 'PVLV_user.User'
 INSTALLED_APPS = [
 
     # apps
-    'PVLV_auth.apps.PvlvAuthConfig',
-    'PVLV_chatwars.apps.PvlvChatWarsConfig',
-    'PVLV_games.apps.PvlvGamesConfig',
-    'PVLV_platform.apps.PvlvPlatformConfig',
-    'PVLV_post.apps.PvlvPostConfig',
-    'PVLV_user.apps.PvlvUserConfig',
+    'PVLV_auth',
+    'PVLV_chatwars',
+    'PVLV_games',
+    'PVLV_platform',
+    'PVLV_post',
+    'PVLV_user',
+    'PVLV_website',
+    'PVLV_website.blog.apps.BlogConfig',
 
     # core
     'django.contrib.admin',
@@ -74,6 +76,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -173,4 +176,19 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+LOGIN_REDIRECT_URL = 'home'
+LOGIN_URL = 'login'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = setup_from_conf_file('server.conf')['EMAIL_USER']
+EMAIL_HOST_PASSWORD = setup_from_conf_file('server.conf')['EMAIL_PASSWORD']
