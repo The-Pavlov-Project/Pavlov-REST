@@ -20,7 +20,7 @@ CONF_DIR = os.getenv("PAVLOV_CONF_DIR", os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 
-# Read database configuration files
+# Read configuration files
 # if it doesn't exist exit and print error.
 def setup_from_conf_file(filename):
     try:
@@ -187,8 +187,8 @@ LOGIN_REDIRECT_URL = 'home'
 LOGIN_URL = 'login'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = '587'
-EMAIL_USE_TLS = True
+EMAIL_HOST = setup_from_conf_file('server.conf')['EMAIL_HOST']
+EMAIL_PORT = setup_from_conf_file('server.conf')['EMAIL_PORT']
+EMAIL_USE_TLS = setup_from_conf_file('server.conf')['EMAIL_USE_TLS']
 EMAIL_HOST_USER = setup_from_conf_file('server.conf')['EMAIL_USER']
 EMAIL_HOST_PASSWORD = setup_from_conf_file('server.conf')['EMAIL_PASSWORD']

@@ -1,35 +1,130 @@
 {% extends "base.html" %}
 {% block content %}
-    {% for post in posts %}
-        <article class="media content-section">
-          <div class="media-body">
-            <div class="article-metadata">
-              <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+
+    <!--
+    <div id="slides" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="/media/img/background1.png" alt="">
+                <div class="carousel-caption">
+                    <h1 class="display-2">The Pavlov Project</h1>
+                    <h2>Take the bot experience to the next level</h2>
+                </div>
             </div>
-            <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
-            <p class="article-content">{{ post.content }}</p>
-          </div>
-        </article>
-    {% endfor %}
-    {% if is_paginated %}
+            <div class="carousel-item">
+                <img src="/media/img/background2.png" alt="">
+            </div>
+            <div class="carousel-item">
+                <img src="/media/img/background3.png" alt="">
+            </div>
+        </div>
 
-      {% if page_obj.has_previous %}
-        <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
-        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
-      {% endif %}
+        <ul class="carousel-indicators">
+            <li data-target="#slides" data-slide-to="0" class="active"></li>
+            <li data-target="#slides" data-slide-to="1"></li>
+            <li data-target="#slides" data-slide-to="2"></li>
+        </ul>
+    </div>
 
-      {% for num in page_obj.paginator.page_range %}
-        {% if page_obj.number == num %}
-          <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
-        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-          <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
-        {% endif %}
-      {% endfor %}
+    -->
+    <header class="masthead">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12 text-center">
+                    <h1 class="display-3">The Pavlov Project</h1>
+                    <p class="lead">Take the bot experience to the next level</p>
+                </div>
+            </div>
+        </div>
+    </header>
 
-      {% if page_obj.has_next %}
-        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
-        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
-      {% endif %}
+    <section class="py-5">
+        <div class="container text-center">
+            <h2 class="display-6">What we have to offer</h2>
+            <p>Our mission is to help improve the user experience of communities, web pages and small businesses by automating repetitive tasks. We are still a university project but we are growing fast, give us a hand too, using our tools.</p>
+            <p>We keep all contacts with our users secret. We do not collect profiling data. No password is required to use our tools</p>
 
-    {% endif %}
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="row text-center padding">
+            <div class="col-sx-12 col-sm-6 d-flex">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Pavlov-Bot</h5>
+                        <p class="card-text">The bot it's multiplatform and work simultaneously on Telegram and Discord with a shared profile.</p>
+                        <a href="#" class="btn btn-primary">ADD</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sx-12 col-sm-6 d-flex">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Post generation</h5>
+                        <p class="card-text">We help by automating repetitive tasks, leaving more time to spend interacting with users</p>
+                        <a href="#" class="btn btn-primary">LEARN MORE</a>
+                    </div>
+                </div>
+            </div>
+
+            <!--
+            <div class="col-sx-12 col-sm-6 mb-4 d-flex">
+                <div class="card">
+                    <img src="/media/assets/pvlv-logo.png" class="card-img-top" alt="pvlv-logo">
+                    <div class="card-body">
+                        <h5 class="card-title">PVLV</h5>
+                        <p class="card-text">A full hackarable framework, to build multi-platform bots writing the code only once.</p>
+                        <a href="#" class="btn btn-primary">CONTRIBUTE</a>
+                    </div>
+                </div>
+            </div>
+            -->
+
+        </div>
+    </section>
+
+    <!--
+    <section class="py-5">
+        <div class="row padding ">
+            <div class="col-lg-6 align-self-center">
+                <h2>Automate your post generation</h2>
+                <p>We help by automating repetitive tasks, leaving more time to spend interacting with users</p>
+                <p>Try or first product, a post generator, for those who mainly post text in the form of an image. Fully configurable, contact us for a demo.</p>
+            </div>
+            <div class="col-lg-6">
+                <img src="/media/img/post-1.jpeg" class="img-fluid" alt="product">
+            </div>
+        </div>
+    </section>
+    -->
+
+    <section class="py-5">
+        <div class="row text-center padding">
+            <div class="col-12">
+                <h2>Connect</h2>
+            </div>
+            <div class="col-12 social">
+                <a href="instagram.com/pavlov_project" class="fab fa-instagram"></a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="row text-center padding">
+            <div class="col-12">
+                <h2>The people who believe in us</h2>
+            </div>
+            <div class="col-12 social">
+                {% for testimonial in testimonials %}
+                    <a href="#">
+                    <img src="{{ testimonial.user.image.url }}" class="rounded-circle costumer-img" alt="{{ testimonial.user.username }}">
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+
 {% endblock content %}
