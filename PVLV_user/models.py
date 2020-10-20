@@ -6,6 +6,7 @@ from PIL import Image
 class User(AbstractUser):
 
     email = models.EmailField(unique=True)
+    is_verified = models.BooleanField(default=False)
 
     bio = models.TextField(max_length=500, blank=True)
     birth_date = models.DateField(null=True, blank=True)

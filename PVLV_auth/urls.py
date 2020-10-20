@@ -1,10 +1,11 @@
 from django.urls import path, reverse_lazy
 from django.contrib.auth import views as auth_views
-from PVLV_auth.views import register
+from PVLV_auth.views import register, activate
 
 
 urlpatterns = [
     path('register/', register, name='register'),
+    path('activate/<uidb64>/<token>/', activate, name='activate'),
     path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='registration/logout.html'), name='logout'),
     path(

@@ -16,7 +16,7 @@ User = get_user_model()
 class PostListView(ListView):
     """Home view for posts"""
     model = Post
-    template_name = 'blog-home.html'
+    template_name = 'blog/home.html'
     context_object_name = 'posts'
     ordering = ['-date_posted']
     paginate_by = 5
@@ -25,7 +25,7 @@ class PostListView(ListView):
 class UserPostListView(ListView):
     """Posts by the user"""
     model = Post
-    template_name = 'blog-user-posts.html'
+    template_name = 'blog/user-posts.html'
     context_object_name = 'posts'
     paginate_by = 5
 
@@ -37,13 +37,13 @@ class UserPostListView(ListView):
 class PostDetailView(DetailView):
     """Show more data of that post"""
     model = Post
-    template_name = 'blog-post-detail.html'
+    template_name = 'blog/post-detail.html'
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     """Create a new post"""
     model = Post
-    template_name = 'blog-post-form.html'
+    template_name = 'blog/post-form.html'
     fields = ['title', 'content']
 
     def form_valid(self, form):
@@ -54,7 +54,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     """Edit a post"""
     model = Post
-    template_name = 'blog-post-form.html'
+    template_name = 'blog/post-form.html'
     fields = ['title', 'content']
 
     def form_valid(self, form):
@@ -71,7 +71,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     """Delete the post"""
     model = Post
-    template_name = 'blog-post-confirm-delete.html'
+    template_name = 'blog/post-confirm-delete.html'
     success_url = '/blog/'
 
     def test_func(self):
