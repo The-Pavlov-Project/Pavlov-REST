@@ -49,7 +49,7 @@
 
     <section class="py-5">
         <div class="row text-center padding">
-            <div class="col-sx-12 col-sm-6 d-flex">
+            <div class="col-sx-12 col-sm-6 d-flex mb-4">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Pavlov-Bot</h5>
@@ -59,7 +59,7 @@
                 </div>
             </div>
 
-            <div class="col-sx-12 col-sm-6 d-flex">
+            <div class="col-sx-12 col-sm-6 d-flex mb-4">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Post generation</h5>
@@ -100,31 +100,38 @@
     </section>
     -->
 
-    <section class="py-5">
-        <div class="row text-center padding">
-            <div class="col-12">
-                <h2>Connect</h2>
+    {% if contacts %}
+        <section class="py-5">
+            <div class="row text-center padding">
+                <div class="col-12">
+                    <h2>Connect with us</h2>
+                </div>
+                <div class="col-12 social">
+                    {% for contact in contacts %}
+                        <a href="{{ contact.link }}" target="_blank">
+                            <img src="{{ contact.image }}" class="rounded-circle costumer-img" alt="{{ contact.name }}">
+                        </a>
+                    {% endfor %}
+                </div>
             </div>
-            <div class="col-12 social">
-                <a href="instagram.com/pavlov_project" class="fab fa-instagram"></a>
-            </div>
-        </div>
-    </section>
+        </section>
+    {% endif %}
 
-    <section class="py-5">
-        <div class="row text-center padding">
-            <div class="col-12">
-                <h2>The people who believe in us</h2>
+    {% if testimonials %}
+        <section class="py-5">
+            <div class="row text-center padding">
+                <div class="col-12">
+                    <h2>The connect with the people who believe in us</h2>
+                </div>
+                <div class="col-12 social">
+                    {% for testimonial in testimonials %}
+                        <a href="{{ testimonial.link }}" target="_blank">
+                        <img src="{{ testimonial.user.image.url }}" class="rounded-circle costumer-img" alt="{{ testimonial.user.username }}">
+                    </a>
+                    {% endfor %}
+                </div>
             </div>
-            <div class="col-12 social">
-                {% for testimonial in testimonials %}
-                    <a href="#">
-                    <img src="{{ testimonial.user.image.url }}" class="rounded-circle costumer-img" alt="{{ testimonial.user.username }}">
-                </a>
-                {% endfor %}
-            </div>
-        </div>
-    </section>
-
+        </section>
+    {% endif %}
 
 {% endblock content %}

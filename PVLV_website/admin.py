@@ -3,5 +3,6 @@ from .models import *
 
 
 admin.site.register([
+    Contact,
     Testimonial,
 ])

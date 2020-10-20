@@ -12,6 +12,7 @@ body {
 
 .masthead {
   height: 100vh;
+  display: flex;
   min-height: 500px;
   background-size: cover;
   background-position: center;

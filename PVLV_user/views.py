@@ -20,4 +20,4 @@ def profile(request):
         'form': form,
     }
 
-    return render(request, 'registration/profile.html', context)
+    return render(request, 'user/profile.html', context)

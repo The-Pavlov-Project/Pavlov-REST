@@ -7,6 +7,8 @@
 /pavlov/database.conf
 /pavlov/server.conf
 
+/static/
+
 *.pyc
 *.log
 pavlov.db.sqlite3
