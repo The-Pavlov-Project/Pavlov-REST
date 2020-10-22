@@ -1,3 +1,11 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def post(request):
+
+    context = {
+        'spot': {
+        }
+
+    }
+    return render(request, 'console/post.html', context)

@@ -1,15 +1,3 @@
-html, body {
-  height: 100%;
-  width: 100%;
-  font-family: 'Popp', sans-serif;
-  color: #333333;
-}
-
-body {
-  background: #e2dfdf;
-  margin-top: 8rem;
-}
-
 .masthead {
   height: 100vh;
   display: flex;
@@ -25,18 +13,6 @@ body {
   max-height: 50px;
   margin: auto;
   display: block;
-}
-
-.navbar {
-  padding: .8rem;
-}
-
-.navbar-nav li {
-  padding-right: 1.3rem;
-}
-
-.nav-link {
-  font-size: 1.1em;
 }
 
 .costumer-img {

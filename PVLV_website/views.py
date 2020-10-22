@@ -6,10 +6,15 @@ User = get_user_model()
 
 
 def home(request):
-    contacts = Contact.objects.all()
 
     context = {
         'contacts': Contact.objects.all(),
         'testimonials': Testimonial.objects.filter(display=True).order_by('-relevance'),
     }
     return render(request, 'home.html', context)
+
+
+def dashboard(request):
+
+    context = {}
+    return render(request, 'console/dashboard.html', context)
