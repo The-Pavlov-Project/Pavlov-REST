@@ -26,7 +26,7 @@ def post_update(request):
         if form.is_valid():
             form.save()
             messages.success(request, f'Update successful!')
-            return redirect('post')
+            return redirect('console-post')
 
     # if a GET (or any other method) we'll create a blank form
     else:
