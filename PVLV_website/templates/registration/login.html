@@ -9,47 +9,18 @@
 
           <!-- Nested Row within Card Body -->
           <div class="p-5">
-
             <div class="text-center">
               <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
             </div>
-
-            <form id="login-form" class="user" method="POST">
-              {% csrf_token %}
-
-              <div id="div_id_username" class="form-group">
-                <div class="">
-                  <input type="text" name="username" autofocus autocapitalize="none" autocomplete="username" maxlength="150" class="form-control form-control-user" required id="id_username" placeholder="Enter Your Username...">
-                </div>
-              </div>
-
-              <div id="div_id_password" class="form-group">
-                <div class="">
-                  <input type="password" name="password" autocomplete="current-password" class="form-control form-control-user" required id="id_password" placeholder="Password">
-                </div>
-              </div>
-
-              <div class="form-group">
-                <div class="custom-control custom-checkbox small">
-                  <input type="checkbox" class="custom-control-input" id="customCheck">
-                  <label class="custom-control-label" for="customCheck">Remember Me</label>
-                </div>
-              </div>
-
-              <hr>
-              <div class="form-group">
-                <button type="submit" value="Log in" class="btn btn-primary btn-user btn-block">Login</button>
-              </div>
-              <hr>
-
-              <div class="text-center">
+            {% crispy form %}
+            <hr>
+            <div class="text-center">
                 <a class="small" href="{% url 'password-reset' %}">Forgot Password?</a>
-              </div>
-              <div class="text-center">
+            </div>
+            <div class="text-center">
                 <a class="small" href="{% url 'register' %}">Create an Account!</a>
-              </div>
+            </div>
 
-            </form>
           </div>
         </div>
       </div>
