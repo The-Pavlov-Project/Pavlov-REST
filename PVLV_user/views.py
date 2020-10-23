@@ -13,8 +13,11 @@ def profile(request):
             messages.success(request, f'Your account has been updated!')
             return redirect('profile')
 
+    # get the user post form, or create a new one
     else:
         form = UserUpdateForm(instance=request.user)
+        if not form:
+            form = UserUpdateForm()
 
     context = {
         'form': form,

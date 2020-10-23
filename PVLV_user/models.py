@@ -23,9 +23,9 @@ class User(AbstractUser):
     # USERNAME_FIELD = 'username'
     # REQUIRED_FIELDS = ['username']
 
-    image = models.ImageField(default='default.jpg', upload_to='profile')
+    image = models.ImageField(default='default/profile.jpg', upload_to='profile')
 
-    def __str__(self):
+    def __repr__(self):
         return f'{self.username}'
 
     def save(self, *args, **kwargs):

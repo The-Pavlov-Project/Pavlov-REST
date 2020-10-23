@@ -1,9 +1,8 @@
-from django.shortcuts import render
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import (
-    UpdateView,
-)
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
+from .forms import PostForm
 from .models import PostGeneratorConfig
 
 
@@ -12,18 +11,25 @@ def post(request):
     return render(request, 'console/post.html', context)
 
 
-class PostView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-    """Update the post settings"""
-    model = PostGeneratorConfig
-    template_name = 'console/post.html'
-    fields = ['name', 'post', 'spot']
+@login_required
+def post_update(request):
+    # if this is a POST request we need to process the form data
+    try:
+        post_instance = PostGeneratorConfig.objects.get(owner=request.user, scope='post')
+    except PostGeneratorConfig.DoesNotExist:
+        post_instance = PostGeneratorConfig(owner=request.user, scope='post')
 
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = PostForm(request.POST, files=request.FILES, instance=post_instance)
+        # check whether it's valid:
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'Update successful!')
+            return redirect('post')
 
-    def test_func(self):
-        config = self.get_object()
-        if self.request.user == config.author:
-            return True
-        return False
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = PostForm(instance=post_instance)
+
+    return render(request, 'console/post.html', {'form': form})

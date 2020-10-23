@@ -4,8 +4,8 @@
   {% include "console/sidebar.html" %}
 {% endblock %}
 
+{% load crispy_forms_tags %}
 {% block content %}
-
   <!-- Page Heading -->
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Post Configurations</h1>
@@ -25,82 +25,8 @@
     <div class="collapse" id="collapseCardExample">
       <div class="card-body">
         <h3>Edit configs for Spot</h3>
+        {% crispy form %}
 
-        <!-- Card Content form -->
-        <form id="data-form" class="post" method="POST">
-
-            <div class="form-group row">
-              <label class="col-3 col-lg-2 col-form-label text-right">Colorize Logo</label>
-              <div class="col-9 col-lg-10">
-                  <select class="form-control">
-                    <option>True</option>
-                    <option>False</option>
-                  </select>
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label class="col-3 col-lg-2 col-form-label text-right">Logo Position</label>
-              <div class="col-9 col-lg-10">
-                  <select class="form-control">
-                    <option>Top</option>
-                    <option>Top Right</option>
-                    <option>Top Left</option>
-                    <option>Center</option>
-                    <option>Bottom</option>
-                  </select>
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label class="col-3 col-lg-2 col-form-label text-right">Rectangle</label>
-              <div class="col-9 col-lg-10">
-                  <select class="form-control">
-                    <option>Default select</option>
-                    <option>t0</option>
-                    <option>t1</option>
-                  </select>
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label class="col-3 col-lg-2 col-form-label text-right">Top Image</label>
-              <div class="col-9 col-lg-10">
-                  <select class="form-control">
-                    <option>Default select</option>
-                    <option>A select</option>
-                    <option>B select</option>
-                  </select>
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label class="col-3 col-lg-2 col-form-label text-right">Border Type</label>
-              <div class="col-9 col-lg-10">
-                  <select class="form-control">
-                    <option>Default select</option>
-                    <option>A select</option>
-                    <option>B select</option>
-                  </select>
-              </div>
-            </div>
-
-
-            <div class="form-group row">
-                <label for="inputEmail2" class="col-3 col-lg-2 col-form-label text-right">Email</label>
-                <div class="col-9 col-lg-10">
-                <input id="inputEmail2" type="email" required="" data-parsley-type="email" placeholder="Email" class="form-control">
-                </div>
-            </div>
-
-            <div class="col-sm-6 pl-0">
-              <p class="text-right">
-                <button type="submit" class="btn btn-space btn-primary">Submit</button>
-                <button class="btn btn-space btn-secondary">Cancel</button>
-              </p>
-            </div>
-
-        </form>
       </div>
     </div>
   </div>

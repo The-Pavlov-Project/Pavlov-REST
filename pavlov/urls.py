@@ -33,7 +33,7 @@ urlpatterns = [
     path('api/chatwars/', include('PVLV_chatwars.urls')),
     path('api/g/', include('PVLV_games.urls')),
     path('api/platform/', include('PVLV_platform.urls')),
-    path('api/post/', include('PVLV_post.urls')),
+    path('api/post/', include('PVLV_post.api.urls')),
     path('api/user/', include('PVLV_user.api.urls')),
 
 ]

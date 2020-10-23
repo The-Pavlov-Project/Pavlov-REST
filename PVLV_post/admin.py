@@ -3,6 +3,5 @@ from .models import *
 
 admin.site.register([
     Color,
-    PostGeneratorSubConfig,
     PostGeneratorConfig,
 ])

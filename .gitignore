@@ -9,6 +9,9 @@
 
 /static/
 
+/media/post/
+/media/profile/
+
 *.pyc
 *.log
 pavlov.db.sqlite3

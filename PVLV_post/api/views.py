@@ -5,11 +5,10 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.status import HTTP_404_NOT_FOUND
 
-from PVLV_post.models import Color, PostGeneratorSubConfig, PostGeneratorConfig
+from PVLV_post.models import Color, PostGeneratorConfig
 
 from .serializers import (
     ColorSerializer,
-    PostGeneratorSubConfigSerializer,
     PostGeneratorConfigsSerializer,
 )
 
@@ -17,11 +16,6 @@ from .serializers import (
 class ColorViewSet(ReadOnlyModelViewSet):
     queryset = Color.objects.all()
     serializer_class = ColorSerializer
-
-
-class PostGeneratorSubConfigViewSet(ReadOnlyModelViewSet):
-    queryset = PostGeneratorSubConfig.objects.all()
-    serializer_class = PostGeneratorSubConfigSerializer
 
 
 class PostGeneratorConfigsViewSet(ReadOnlyModelViewSet):

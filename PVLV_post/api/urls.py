@@ -1,11 +1,10 @@
 from django.urls import path
 from rest_framework import routers
-from PVLV_post.api.views import ColorViewSet, PostGeneratorSubConfigViewSet, PostGeneratorConfigsViewSet
+from PVLV_post.api.views import ColorViewSet, PostGeneratorConfigsViewSet
 
 router = routers.DefaultRouter()
 router.register('', PostGeneratorConfigsViewSet)
 router.register('detail/color', ColorViewSet)
-router.register('detail/sub', PostGeneratorSubConfigViewSet)
 
 
 urlpatterns = [
