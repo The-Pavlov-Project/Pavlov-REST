@@ -22,7 +22,7 @@ class PostForm(forms.ModelForm):
         required=False,
         label='Automatically change the color of the logo to match with current post color'
     )
-    top_image = forms.ChoiceField(
+    scope_image = forms.ChoiceField(
         choices=ScopeImage.choices,
         required=False,
         label='Set the image on top of the text'
@@ -40,7 +40,7 @@ class PostForm(forms.ModelForm):
             'logo',
             'logo_position',
             'colorize_logo',
-            'top_image',
+            'scope_image',
             'text_align',
             'rectangle'
             ]
@@ -50,7 +50,7 @@ class PostForm(forms.ModelForm):
         Field('logo'),
         Field('logo_position'),
         Field('colorize_logo'),
-        Field('top_image'),
+        Field('scope_image'),
         Field('text_align'),
         Field('rectangle'),
         Submit('submit', 'Save'),

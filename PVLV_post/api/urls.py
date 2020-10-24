@@ -8,8 +8,5 @@ router.register('detail/color', ColorViewSet)
 
 
 urlpatterns = [
-    path('<slug:name>/', PostGeneratorConfigsViewSet.as_view({
-        'get': 'name',
-        'put': 'name'
-    })),
+    path('<int:user_id>/<slug:scope>/', PostGeneratorConfigsViewSet.as_view({'get': 'scope'})),
 ] + router.urls

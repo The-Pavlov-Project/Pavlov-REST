@@ -18,9 +18,11 @@ class ColorSerializer(ModelSerializer):
 
 class PostGeneratorConfigsSerializer(ModelSerializer):
 
-    owners = UserSerializer(read_only=True, many=True)
+    operators = UserSerializer(read_only=True, many=True)
+    owner = UserSerializer(read_only=True)
+    colors = ColorSerializer(read_only=True, many=True)
 
     class Meta:
         model = PostGeneratorConfig
         exclude = []
-        depth = 2
+        depth = 1
