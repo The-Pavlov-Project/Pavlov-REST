@@ -1,57 +1,90 @@
-from django import forms
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Submit, Field
+from django import forms
+from django.forms.models import inlineformset_factory
 from .models import (
-    PostGeneratorConfig,
-    Scope,
-    LogoPosition,
-    ColorizeLogo,
-    ScopeImage,
-    TextAlign,
-    Rectangle,
+    Post,
+    GeneratorSetting,
+    Platform,
+    PlatformType
 )
 
 
 class PostForm(forms.ModelForm):
 
-    scope = forms.ChoiceField(choices=Scope.choices, required=False)
-    logo = forms.ImageField(required=False)
-    logo_position = forms.ChoiceField(choices=LogoPosition.choices, required=False)
-    colorize_logo = forms.ChoiceField(
-        choices=ColorizeLogo.choices,
-        required=False,
-        label='Automatically change the color of the logo to match with current post color'
-    )
-    scope_image = forms.ChoiceField(
-        choices=ScopeImage.choices,
-        required=False,
-        label='Set the image on top of the text'
-    )
-    text_align = forms.ChoiceField(choices=TextAlign.choices, required=False)
-    rectangle = forms.ChoiceField(
-        choices=Rectangle.choices,
-        required=False,
-        label='Outline of the post'
-    )
+    class Meta:
+        model = Post
+        fields = ['main_logo']
+
+
+class GeneratorSettingForm(forms.ModelForm):
 
     class Meta:
-        model = PostGeneratorConfig
+        model = GeneratorSetting
         fields = [
+            'scope',
+            'display_name_tag',
+            'colors',
             'logo',
             'logo_position',
             'colorize_logo',
             'scope_image',
             'text_align',
-            'rectangle'
+            'rectangle',
             ]
+        labels = {
+            'colorize_logo': 'Automatically change the color of the logo to match with current post color',
+            'scope_image': 'Set the image on top of the text',
+            'rectangle': 'Outline of the post',
+        }
 
-    helper = FormHelper()
-    helper.layout = Layout(
-        Field('logo'),
-        Field('logo_position'),
-        Field('colorize_logo'),
-        Field('scope_image'),
-        Field('text_align'),
-        Field('rectangle'),
-        Submit('submit', 'Save'),
+    def __init__(self, *args, **kwargs):
+
+        super(GeneratorSettingForm, self).__init__(*args, **kwargs)
+
+        self.helper = FormHelper()
+        self.helper.form_tag = False
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-md-3 create-label'
+        self.helper.field_class = 'col-md-9'
+
+
+class PlatformForm(forms.ModelForm):
+
+    # add the default void value in selection
+    platforms = [(u'', u'---')]
+    platforms.extend(PlatformType.choices)
+
+    platform = forms.ChoiceField(choices=platforms)
+
+    class Meta:
+        model = Platform
+        fields = ['platform', 'name_tag']
+
+    def __init__(self, *args, **kwargs):
+        super(PlatformForm, self).__init__(*args, **kwargs)
+
+        self.helper = FormHelper()
+        self.helper.form_tag = False
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-md-3 create-label'
+        self.helper.field_class = 'col-md-9'
+
+
+GeneratorSettingsInlineFormSet = inlineformset_factory(
+        Post,
+        GeneratorSetting,
+        form=GeneratorSettingForm,
+        max_num=5,
+        extra=1,
+        can_delete=True,
+    )
+
+
+PlatformInlineFormSet = inlineformset_factory(
+        Post,
+        Platform,
+        form=PlatformForm,
+        max_num=2,
+        extra=1,
+        can_delete=True,
     )

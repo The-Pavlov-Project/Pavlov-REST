@@ -1,10 +1,12 @@
 from rest_framework.serializers import (
-    ModelSerializer,
+    ModelSerializer, RelatedField
 )
 from PVLV_user.api.serializers import UserSerializer
 from PVLV_post.models import (
     Color,
-    PostGeneratorConfig,
+    GeneratorSetting,
+    Platform,
+    Post,
 )
 
 
@@ -12,17 +14,41 @@ class ColorSerializer(ModelSerializer):
 
     class Meta:
         model = Color
-        exclude = ['id']
+        fields = ['background', 'primary', 'text', 'is_dark']
         depth = 0
 
 
-class PostGeneratorConfigsSerializer(ModelSerializer):
+class GeneratorSettingsSerializer(ModelSerializer):
 
-    operators = UserSerializer(read_only=True, many=True)
-    owner = UserSerializer(read_only=True)
     colors = ColorSerializer(read_only=True, many=True)
 
     class Meta:
-        model = PostGeneratorConfig
+        model = GeneratorSetting
         exclude = []
+        depth = 1
+
+
+class PlatformSerializer(ModelSerializer):
+
+    class Meta:
+        model = Platform
+        exclude = []
+
+
+class PostSerializer(ModelSerializer):
+
+    user = UserSerializer(read_only=True)
+    operators = UserSerializer(read_only=True, many=True)
+    platforms = PlatformSerializer(read_only=True, many=True)
+    settings = GeneratorSettingsSerializer(read_only=True, many=True)
+
+    class Meta:
+        model = Post
+
+        fields = [
+            'user',
+            'operators',
+            'platforms',
+            'settings',
+        ]
         depth = 1

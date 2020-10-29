@@ -1,12 +1,12 @@
 from django.urls import path
 from rest_framework import routers
-from PVLV_post.api.views import ColorViewSet, PostGeneratorConfigsViewSet
+from PVLV_post.api.views import ColorViewSet, PostViewSet
 
 router = routers.DefaultRouter()
-router.register('', PostGeneratorConfigsViewSet)
+router.register('', PostViewSet)
 router.register('detail/color', ColorViewSet)
 
 
 urlpatterns = [
-    path('<int:user_id>/<slug:scope>/', PostGeneratorConfigsViewSet.as_view({'get': 'scope'})),
+    path('user/<int:user_id>/', PostViewSet.as_view({'get': 'user'})),
 ] + router.urls

@@ -15,20 +15,82 @@
     Configurations for the <strong>post command</strong>, edit the parameters to change the graphic aspect of the generated post!
   </p>
 
-  <!-- Collapsable Card -->
-  <div class="card shadow mb-4">
-    <!-- Card Header - Accordion -->
-    <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-      <h6 class="m-0 font-weight-bold text-primary">Spot Configuration</h6>
-    </a>
-    <!-- Card Content - Collapse -->
-    <div class="collapse" id="collapseCardExample">
-      <div class="card-body">
-        <h3>Edit configs for Spot</h3>
-        {% crispy form %}
+  <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
 
+    <br>
+    <h5 class="mb-0 text-gray-800">Platforms</h5>
+    <hr>
+
+    <fieldset>
+    {{ formset_platforms.management_form }}
+    {% for platform in formset_platforms %}
+      <!-- Collapsable Card -->
+      <div class="card shadow mb-4">
+        <!-- Card Header - Accordion -->
+        <a href="#collapseCardPlatform{{ forloop.counter }}" class="collapse d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true">
+          <h6 class="m-0 font-weight-bold text-primary">
+              {% if not platform.instance.platform.value %}
+                {{ platform.instance.platform.title }} Platform
+              {% else %}
+                [New] Platform
+              {% endif %}
+          </h6>
+        </a>
+        <!-- Card Content - Collapse -->
+        <div class="collapse" id="collapseCardPlatform{{ forloop.counter }}">
+          <div class="card-body">
+            <h3>
+              {% if not platform.instance.platform.value %}
+                Edit settings for {{ platform.instance.platform.lower }}
+              {% else %}
+                Add a new platform
+              {% endif %}
+            </h3>
+            {% crispy platform platform.helper %}
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+    {% endfor %}
+    </fieldset>
+
+    <br>
+    <h5 class="mb-0 text-gray-800">Settings</h5>
+    <hr>
+
+    <fieldset>
+        {{ formset_settings.management_form }}
+        {% for settings in formset_settings %}
+            <!-- Collapsable Card -->
+          <div class="card shadow mb-4">
+            <!-- Card Header - Accordion -->
+            <a href="#collapseCardSettings{{ forloop.counter }}" class="collapse d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false">
+              <h6 class="m-0 font-weight-bold text-primary">
+                  {% if settings.instance.scope %}
+                    {{ settings.instance.scope.title }} Settings
+                  {% else %}
+                      [New] Settings
+                  {% endif %}
+              </h6>
+            </a>
+            <!-- Card Content - Collapse -->
+            <div class="collapse" id="collapseCardSettings{{ forloop.counter }}">
+              <div class="card-body">
+                <h3>
+                  {% if settings.instance.scope %}
+                      Edit settings for {{ settings.instance.scope }}
+                  {% else %}
+                      Create a new settings set
+                  {% endif %}
+                </h3>
+                {% crispy settings settings.helper %}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+    </fieldset>
+
+  <input type="submit" name="Submit" class="btn btn-primary">
+  </form>
 
 {% endblock %}

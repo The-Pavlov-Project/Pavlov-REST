@@ -5,11 +5,11 @@ from rest_framework.status import HTTP_404_NOT_FOUND
 from rest_framework.viewsets import ReadOnlyModelViewSet
 
 
-from PVLV_post.models import Color, PostGeneratorConfig
+from PVLV_post.models import Color, Post
 
 from .serializers import (
     ColorSerializer,
-    PostGeneratorConfigsSerializer,
+    PostSerializer,
 )
 
 
@@ -19,24 +19,18 @@ class ColorViewSet(ReadOnlyModelViewSet):
     permission_classes = (IsAdminUser,)
 
 
-class PostGeneratorConfigsViewSet(ReadOnlyModelViewSet):
-    queryset = PostGeneratorConfig.objects.all()
-    serializer_class = PostGeneratorConfigsSerializer
-    permission_classes = (IsAdminUser,)
+class PostViewSet(ReadOnlyModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    # permission_classes = (IsAdminUser,)
 
     @action(detail=True, name='post-scope', methods=['GET'])
-    def scope(self, request, user_id=None, scope=None):
+    def user(self, request, user_id=None):
 
         try:
-            post_config = PostGeneratorConfig.objects.get(owner=user_id, scope=scope)
-        except PostGeneratorConfig.DoesNotExist:
+            post_config = Post.objects.get(user=user_id)
+        except Post.DoesNotExist:
             return Response({'message': 'PostGeneratorConfigs does not exist'}, status=HTTP_404_NOT_FOUND)
 
         if request.method == 'GET':
-            return Response(PostGeneratorConfigsSerializer(post_config).data)
-
-        elif request.method == 'PUT':
-            _serializer = PostGeneratorConfigsSerializer(post_config, data=request.data, partial=True)
-            _serializer.is_valid(raise_exception=True)
-            _serializer.save()
-            return Response(_serializer.data)
+            return Response(PostzSerializer(post_config).data)
