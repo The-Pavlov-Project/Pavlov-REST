@@ -17,12 +17,12 @@ def post_update(request):
 
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
-        # form = PostForm(request.POST, request.FILES, instance=post, prefix='post')
+        form = PostForm(request.POST, request.FILES, instance=post, prefix='post')
         formset_settings = GeneratorSettingsInlineFormSet(request.POST, request.FILES, instance=post, prefix="settings")
         formset_platforms = PlatformInlineFormSet(request.POST, instance=post, prefix="platforms")
         # check whether it's valid:
-        if formset_settings.is_valid() and formset_platforms.is_valid():
-            # form.save()
+        if form.is_valid() and formset_settings.is_valid() and formset_platforms.is_valid():
+            form.save()
             formset_settings.save()
             formset_platforms.save()
             messages.success(request, 'Update successful!')
@@ -32,7 +32,7 @@ def post_update(request):
 
     # if a GET (or any other method) we'll create a blank form
     else:
-        # form = PostForm(instance=post)
+        form = PostForm(instance=post)
         formset_settings = GeneratorSettingsInlineFormSet(instance=post, prefix="settings")
         formset_platforms = PlatformInlineFormSet(instance=post, prefix="platforms")
 
@@ -40,7 +40,7 @@ def post_update(request):
         request,
         'console/post.html',
         {
-            # 'form': form,
+            'form': form,
             'formset_settings': formset_settings,
             'formset_platforms': formset_platforms,
         }

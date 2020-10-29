@@ -13,7 +13,7 @@ class PostForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ['main_logo']
+        fields = []
 
 
 class GeneratorSettingForm(forms.ModelForm):

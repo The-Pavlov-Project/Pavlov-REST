@@ -33,4 +33,4 @@ class PostViewSet(ReadOnlyModelViewSet):
             return Response({'message': 'PostGeneratorConfigs does not exist'}, status=HTTP_404_NOT_FOUND)
 
         if request.method == 'GET':
-            return Response(PostzSerializer(post_config).data)
+            return Response(PostSerializer(post_config).data)
