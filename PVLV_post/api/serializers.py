@@ -24,7 +24,7 @@ class GeneratorSettingsSerializer(ModelSerializer):
 
     class Meta:
         model = GeneratorSetting
-        exclude = []
+        exclude = ['parent']
         depth = 1
 
 
@@ -32,7 +32,7 @@ class PlatformSerializer(ModelSerializer):
 
     class Meta:
         model = Platform
-        exclude = []
+        exclude = ['parent']
 
 
 class PostSerializer(ModelSerializer):
@@ -51,4 +51,3 @@ class PostSerializer(ModelSerializer):
             'platforms',
             'settings',
         ]
-        depth = 1

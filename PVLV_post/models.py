@@ -27,13 +27,13 @@ class DisplayNameTag(models.TextChoices):
 
 
 class ColorizeLogo(models.TextChoices):
-    FALSE = 'false', 'Disabled'
-    DARK_LIGHT = 'DL', 'Dark and Light'
+    FALSE = None, 'Disabled'
+    DARK_LIGHT = 'dl', 'Dark and Light'
     TRUE = 'true', 'True'
 
 
 class ScopeImage(models.TextChoices):
-    NONE = 'none', 'Disabled'
+    NONE = None, 'Disabled'
     QM = 'quotation-marks', 'Quotation Marks'
 
 
@@ -43,8 +43,15 @@ class TextAlign(models.TextChoices):
     LEFT = 'left', 'Left'
 
 
+class LinePosition(models.TextChoices):
+    NONE = None, 'Disabled'
+    CENTER = 'center', 'Center'
+    RIGHT = 'right', 'Right'
+    LEFT = 'left', 'Left'
+
+
 class LogoPosition(models.TextChoices):
-    NONE = 'none', 'Disabled'
+    NONE = None, 'Disabled'
     AUTO = 'auto', 'Auto'
     CENTER = 'center', 'Center'
     CENTER_UP = 'center-up', 'Center Up'
@@ -56,8 +63,8 @@ class LogoPosition(models.TextChoices):
 
 
 class Rectangle(models.TextChoices):
-    NONE = 'none', 'Disabled'
-    T1 = 'tick_1', 'Tick 1'
+    NONE = None, 'Disabled'
+    T1 = 'tick-1', 'Tick 1'
 
 
 class Post(models.Model):
@@ -123,6 +130,7 @@ class GeneratorSetting(models.Model):
 
     # where to align the text
     text_align = models.CharField(choices=TextAlign.choices, default=TextAlign.CENTER, max_length=20)
+    line_position = models.CharField(choices=LinePosition.choices, default=LinePosition.CENTER, max_length=20)
 
     # display the rectangle delimitation border
     rectangle = models.CharField(choices=Rectangle.choices, default=Rectangle.NONE, max_length=20)

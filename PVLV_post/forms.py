@@ -29,6 +29,7 @@ class GeneratorSettingForm(forms.ModelForm):
             'colorize_logo',
             'scope_image',
             'text_align',
+            'line_position',
             'rectangle',
             ]
         labels = {

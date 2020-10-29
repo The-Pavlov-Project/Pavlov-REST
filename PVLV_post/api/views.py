@@ -22,7 +22,7 @@ class ColorViewSet(ReadOnlyModelViewSet):
 class PostViewSet(ReadOnlyModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    # permission_classes = (IsAdminUser,)
+    permission_classes = (IsAdminUser,)
 
     @action(detail=True, name='post-scope', methods=['GET'])
     def user(self, request, user_id=None):
