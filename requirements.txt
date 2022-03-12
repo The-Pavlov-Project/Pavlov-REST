@@ -4,4 +4,4 @@ django-cors-headers==3.5.0
 django-crispy-forms==1.9.2
 django-cleanup==5.1.0
 
-pillow==8.0.0
+pillow==9.0.1
